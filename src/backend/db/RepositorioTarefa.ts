@@ -17,6 +17,10 @@ export default class RepositorioTarefa {
 		return await prisma.tarefa.delete({ where: { id } })
 	}
 
+	async obterPorId(id: string) {
+		return await prisma.tarefa.findUnique({ where: { id } })
+	}
+
 	async obterTodos() {
 		return await prisma.tarefa.findMany()
 	}

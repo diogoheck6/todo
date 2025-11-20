@@ -1,4 +1,5 @@
 import { Tarefa } from "@/core/model/Tarefa"
+import { IconPlus } from "@tabler/icons-react"
 import { useState } from "react"
 
 export interface TarefaFormProps {
@@ -8,22 +9,22 @@ export interface TarefaFormProps {
 export default function TarefaForm(props: TarefaFormProps) {
 	const [nome, setNome] = useState<any>("")
 
+	async function submeter() {
+		await props.salvar({ nome })
+		setNome("")
+	}
+
 	return (
-		<div>
+		<div className="flex items-center bg-zinc-900 p-2 rounded-md">
 			<input
 				type="text"
 				value={nome}
 				onChange={(e) => setNome(e.target.value)}
-				className="bg-white text-black"
+				onKeyUp={(e) => e.key === "Enter" && submeter()}
+				className="flex-1 text-white bg-transparent outline-none px-2"
 			/>
-			<button
-				onClick={async () => {
-					await props.salvar({ nome })
-					setNome("")
-				}}
-				className="bg-blue-500 p-2"
-			>
-				Salvar Tarefa
+			<button onClick={submeter} className="bg-zinc-600 p-2 rounded-md">
+				<IconPlus />
 			</button>
 		</div>
 	)

@@ -4,13 +4,17 @@ import Tarefalista from "./components/tarefa-lista"
 import useTarefas from "./hooks/use-tarefas"
 
 export default function Home() {
-	const { tarefas, adicionar, excluir } = useTarefas()
+	const { tarefas, adicionar, alternarConclusao, excluir } = useTarefas()
 
 	return (
-		<div>
+		<div className="flex flex-col gap-6 p-6">
 			<h1>Lista de Tarefas</h1>
 			<TarefaForm salvar={adicionar} />
-			<Tarefalista tarefas={tarefas} excluir={excluir} />
+			<Tarefalista
+				tarefas={tarefas}
+				excluir={excluir}
+				alternarConclusao={alternarConclusao}
+			/>
 		</div>
 	)
 }
