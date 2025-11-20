@@ -13,6 +13,10 @@ export default class RepositorioTarefa {
 		})
 	}
 
+	async excluir(id: string) {
+		return await prisma.tarefa.delete({ where: { id } })
+	}
+
 	async obterTodos() {
 		return await prisma.tarefa.findMany()
 	}
